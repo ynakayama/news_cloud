@@ -1,0 +1,29 @@
+- if @blogs.length > 0
+  .newslist
+    .container
+      .content
+        .row
+          .span12
+            %table{:class => "table-striped"}
+              %thead
+                %tr
+                  %th ID
+                  %th タイトル
+                  %th カテゴリ
+                  %th SCORE
+                  %th 日付
+              %tbody
+                - i = 0
+                - @blogs.each do |k, v|
+                  - i += 1
+                  %tr
+                    %td
+                      = i.to_s unless k.nil?
+                    %td
+                      = link_to v['title'], k, :target => "_blank" unless k.nil?
+                    %td
+                      = link_to v['category'], 'http://b.hatena.ne.jp/entry/' + k, :target => "_blank" unless k.nil?
+                    %td
+                      = link_to v['score'].to_s, 'http://b.hatena.ne.jp/entry/' + k, :target => "_blank" unless k.nil?
+                    %td
+                      = link_to v['day'], root_path + '?date=' + v['day'], :target => "_blank" unless k.nil?

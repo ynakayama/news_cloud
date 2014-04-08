@@ -1,0 +1,16 @@
+Gemfile.lock
+vendor/gems/
+vendor/bundler
+vendor/bundler64
+.bundle
+db/*.sqlite3
+db/*.sqlite3-journal
+db/*.db
+db/schema.rb
+log/*.log
+tmp/
+coverage
+.sass-cache/
+.rbenv-version
+public/assets
+public/images

@@ -1,0 +1,7 @@
+.navi
+  %p.pull-left.pager
+    = link_to "前の日", root_path + "?date=#{@prev}"
+  %p.pull-right.pager
+    = link_to "次の日", root_path + "?date=#{@next}"
+  %p.pull-center.pager
+    = link_to @today, root_path + "?date=#{@today}"

@@ -1,0 +1,16 @@
+- if @wordcount.length > 0
+  .wordcount
+    .container
+      .content
+        .row
+          .span12
+            %table{:class => "table-striped"}
+              %thead
+                %tr
+                  %th #{@today} の注目キーワード (件数)
+              %tbody
+                %tr
+                  %td
+                    - @wordcount.each do |k, v|
+                      - if v.to_i > 9
+                        = link_to "#{k}(#{v})", 'https://b.hatena.ne.jp/search/tag?q=' + k, :target => "_blank"

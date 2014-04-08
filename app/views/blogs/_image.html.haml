@@ -1,0 +1,11 @@
+.newstree
+  .container
+    .content
+      .row
+        .span12
+          - if Rails.env == 'production'
+            - if File.exist?(File.expand_path(File.join(RailsApp::Application.config.railsroot, "public", "images", "tree_#{@today}.png")))
+              = link_to image_tag("/newscloud/images/tree_#{@today}.png"), "/newscloud/images/tree_#{@today}.png"
+          - else
+            - if File.exist?(File.expand_path(File.join("/", "var", "www", "rails", "news_cloud", "public", "images", "tree_#{@today}.png")))
+              = link_to image_tag("/images/tree_#{@today}.png"), "/images/tree_#{@today}.png"
