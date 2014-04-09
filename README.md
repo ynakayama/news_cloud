@@ -1,9 +1,6 @@
 News Cloud
 ==========
 
-See doc/README.ja file.
-(document written in Japanese.)
-
 
 Author
 ------
