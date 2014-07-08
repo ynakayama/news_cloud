@@ -8,8 +8,10 @@ LOG_PATH = "/home/fluent/.fluent/log"
 
 class BlogsController < ApplicationController
   def index
-    @search_path = Rails.env.production? ? "/newscloud/search" : "/search"
-    open_blogs
+    @approot_path = Rails.env.production? ? "/newscloud/" : "/"
+    @search_path = @approot_path + "search"
+    @blogs_path = @approot_path + "blogs"
+    open_blogs('index')
     get_wordcount
 
     respond_to do |format|
@@ -18,13 +20,18 @@ class BlogsController < ApplicationController
     end
   end
 
+  def json
+    open_blogs('json')
+    render :json => @blogs
+  end
+
   def edit
     @blog = Blog.find(params[:id])
   end
 
   private
 
-  def open_blogs
+  def open_blogs(method)
     @blogs = Hash.new{|h,k| h[k] = Hash.new(&h.default_proc)}
 
     if params[:date]
@@ -53,7 +60,8 @@ class BlogsController < ApplicationController
         host = 'localhost', port = 9999)
       @fluentd.post('show', {
         :date => @today,
-        :records => @blogs.length
+        :records => @blogs.length,
+        :method => method
       })
     end
   end

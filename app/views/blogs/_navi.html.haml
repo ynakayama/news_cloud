@@ -4,4 +4,4 @@
   %p.pull-right.pager
     = link_to "次の日", root_path + "?date=#{@next}"
   %p.pull-center.pager
-    = link_to @today, root_path + "?date=#{@today}"
+    = link_to @today, @blogs_path + "/json/?date=" + @today, :target => "_blank"
