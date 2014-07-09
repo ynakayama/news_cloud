@@ -7,6 +7,8 @@ require 'fluent-logger'
 LOG_PATH = "/home/fluent/.fluent/log"
 
 class BlogsController < ApplicationController
+    protect_from_forgery except: :jsonp
+
   def index
     @approot_path = Rails.env.production? ? "/newscloud/" : "/"
     @search_path = @approot_path + "search"
@@ -23,6 +25,11 @@ class BlogsController < ApplicationController
   def json
     open_blogs('json')
     render :json => @blogs
+  end
+
+  def jsonp
+    open_blogs('jsonp')
+    render :json => @blogs, callback: "callback"
   end
 
   def edit
